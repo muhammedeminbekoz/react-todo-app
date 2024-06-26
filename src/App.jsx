@@ -1,12 +1,28 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState } from "react";
 import Header from "./components/header";
+import Input from "./components/input";
+import Card from "./components/card";
+import Todolist from "./components/todolist";
 
 function App() {
+  const [todos, setTodos] = useState([]);
+
+  const createTodo = (newTodo) => {
+    setTodos([...todos, newTodo]);
+  };
+
   return (
     <div>
+      <Header />
+
       <div>
-        <Header />
+        <div>
+          <Input onCreateTodo={createTodo} />
+        </div>
+        <div className="mt-16">
+          <Todolist todos={todos} />
+        </div>
       </div>
     </div>
   );
