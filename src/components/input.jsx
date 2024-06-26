@@ -12,6 +12,7 @@ function Input(props) {
   function handleSubmit() {
     if (inputValue != "") {
       props.onCreateTodo(inputValue.trim());
+      setInputValue("");
     }
   }
 
@@ -22,6 +23,10 @@ function Input(props) {
         className="border ring-1 border-blue-500 p-2 rounded shadow-lg w-1/2 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 "
         placeholder="Enter your text here"
         onChange={handleInput}
+        onKeyDown={(e) => {
+          if (e.key == "Enter") handleSubmit();
+        }}
+        value={inputValue}
       />
       {
         <div>
