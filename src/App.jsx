@@ -6,7 +6,7 @@ import Card from "./components/card";
 import Todolist from "./components/todolist";
 
 function App() {
-  const [todos, setTodos] = useState([]);
+  let [todos, setTodos] = useState([]);
 
   const createTodo = (newTodo) => {
     setTodos([...todos, newTodo]);

@@ -4,8 +4,6 @@ import React from "react";
 import Card from "./card";
 
 function Todolist(props) {
-  console.log(props.todos);
-
   return (
     <div>
       {props.todos.map((value, index) => (
