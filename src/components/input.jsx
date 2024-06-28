@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from "react";
@@ -11,7 +12,10 @@ function Input(props) {
   };
   function handleSubmit() {
     if (inputValue != "") {
-      props.onCreateTodo(inputValue.trim());
+      props.onCreateTodo({
+        content: inputValue.trim(),
+        id: Math.floor(Math.random() * 999),
+      });
       setInputValue("");
     }
   }
