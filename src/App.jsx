@@ -12,6 +12,11 @@ function App() {
     setTodos([...todos, newTodo]);
   };
 
+  const deleteTodo = (todo) => {
+    console.log(todo);
+    setTodos(todos.filter((value) => value.id !== todo.id));
+  };
+
   return (
     <div>
       <Header />
@@ -21,7 +26,7 @@ function App() {
           <Input onCreateTodo={createTodo} />
         </div>
         <div className="mt-16">
-          <Todolist todos={todos} />
+          <Todolist todos={todos} onDeleteTodo={deleteTodo} />
         </div>
       </div>
     </div>
