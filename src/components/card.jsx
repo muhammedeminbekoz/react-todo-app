@@ -1,10 +1,11 @@
+/* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { useState } from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
 
-function Card({ todo, deleteTodo }) {
+function Card({ todo, deleteTodo, editable, setUpdateContent, setUpdateId }) {
   const [textState, setTextState] = useState("");
 
   function handleDoneClick() {
@@ -13,13 +14,18 @@ function Card({ todo, deleteTodo }) {
   function handleDeleteClick() {
     deleteTodo(todo);
   }
+  function handleUpdateClick() {
+    editable();
+    setUpdateContent(todo.content);
+    setUpdateId(todo.id);
+  }
 
   return (
     <div className="flex items-center justify-center mt-5">
       <div className="border-2 rounded border-green-500 w-1/2 p-2 flex  justify-between items-center ">
         <span className={textState}> {todo.content} </span>
         <div className="flex space-x-2">
-          <button className="p-1 text-xl active:scale-95 ">
+          <button className="p-1 text-xl active:scale-95 " onClick={handleUpdateClick}>
             <MdEdit />
           </button>
           <button className="p-1 text-xl active:scale-95" onClick={handleDeleteClick}>
