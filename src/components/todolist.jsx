@@ -7,7 +7,14 @@ function Todolist(props) {
   return (
     <div>
       {props.todos.map((value, index) => (
-        <Card key={index} todo={value} />
+        <Card
+          key={index}
+          todo={value}
+          deleteTodo={props.onDeleteTodo}
+          editable={props.onEditable}
+          setUpdateContent={props.setUpdateContent}
+          setUpdateId={props.setUpdateId}
+        />
       ))}
     </div>
   );
