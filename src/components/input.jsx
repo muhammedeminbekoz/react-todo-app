@@ -10,13 +10,20 @@ function Input(props) {
   const handleInput = (e) => {
     setInputValue(e.target.value);
   };
-  function handleSubmit() {
-    if (inputValue != "") {
+  function setNewContetWithUpdateButton() {
+    props.setNewContent(inputValue);
+  }
+  function handleButton() {
+    if (inputValue != "" && props.editable == false) {
       props.onCreateTodo({
         content: inputValue.trim(),
         id: Math.floor(Math.random() * 999),
       });
       setInputValue("");
+    } else if (inputValue != "" && props.editable == true) {
+      setNewContetWithUpdateButton();
+      props.onUpdateTodo(inputValue);
+      props.onEditable();
     }
   }
 
@@ -28,17 +35,21 @@ function Input(props) {
         placeholder="Enter your text here"
         onChange={handleInput}
         onKeyDown={(e) => {
-          if (e.key == "Enter") handleSubmit();
+          if (e.key == "Enter") handleButton();
         }}
         value={inputValue}
       />
       {
         <div>
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 rounded-2xl h-11 ml-2 active:scale-95"
-            onClick={handleSubmit}
+            className={
+              props.editable
+                ? "bg-yellow-500 hover:yellow-blue-700 text-white font-bold px-4 rounded-2xl h-11 ml-2 active:scale-95"
+                : "bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 rounded-2xl h-11 ml-2 active:scale-95"
+            }
+            onClick={handleButton}
           >
-            Submit
+            {props.editable ? "Update" : "Submit"}
           </button>
         </div>
       }
