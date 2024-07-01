@@ -24,6 +24,7 @@ function Input(props) {
       setNewContetWithUpdateButton();
       props.onUpdateTodo(inputValue);
       props.onEditable();
+      setInputValue("");
     }
   }
 
