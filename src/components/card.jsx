@@ -5,7 +5,7 @@ import React from "react";
 import { useState } from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
 
-function Card({ todo, deleteTodo, editable, setUpdateContent, setUpdateId }) {
+function Card({ todo, deleteTodo, editable, setUpdateContent, setUpdateId, inputRef }) {
   const [textState, setTextState] = useState("");
 
   function handleDoneClick() {
@@ -15,6 +15,7 @@ function Card({ todo, deleteTodo, editable, setUpdateContent, setUpdateId }) {
     deleteTodo(todo);
   }
   function handleUpdateClick() {
+    inputRef.current.focus();
     editable();
     setUpdateContent(todo.content);
     setUpdateId(todo.id);
