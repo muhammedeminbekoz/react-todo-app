@@ -1,8 +1,7 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "./components/header";
 import Input from "./components/input";
-import Card from "./components/card";
 import Todolist from "./components/todolist";
 
 function App() {
@@ -14,6 +13,7 @@ function App() {
   const [newContent, setNewContet] = useState(" ");
   const [updateId, setUpdateId] = useState();
   const [updateContent, setUpdateContent] = useState();
+  const inputRef = useRef(null);
 
   const createTodo = (newTodo) => {
     setTodos([...todos, newTodo]);
@@ -52,6 +52,7 @@ function App() {
             newContent={newContent}
             setNewContent={setNewContet}
             onEditable={onEditable}
+            inputRef={inputRef}
           />
         </div>
         <div className="mt-16">
@@ -62,8 +63,7 @@ function App() {
             onEditable={onEditable}
             setUpdateContent={setUpdateContent}
             setUpdateId={setUpdateId}
-            // updateContet={updateContent}
-            // updateId={updateId}
+            inputRef={inputRef}
           />
         </div>
       </div>
