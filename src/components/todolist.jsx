@@ -14,6 +14,7 @@ function Todolist(props) {
           editable={props.onEditable}
           setUpdateContent={props.setUpdateContent}
           setUpdateId={props.setUpdateId}
+          inputRef={props.inputRef}
         />
       ))}
     </div>
