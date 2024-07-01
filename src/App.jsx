@@ -1,12 +1,15 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./components/header";
 import Input from "./components/input";
 import Card from "./components/card";
 import Todolist from "./components/todolist";
 
 function App() {
-  let [todos, setTodos] = useState([]);
+  let [todos, setTodos] = useState(() => {
+    const savaedTodos = localStorage.getItem("todos");
+    return savaedTodos ? JSON.parse(savaedTodos) : [];
+  });
   const [editable, setEditable] = useState(false);
   const [newContent, setNewContet] = useState(" ");
   const [updateId, setUpdateId] = useState();
@@ -15,6 +18,10 @@ function App() {
   const createTodo = (newTodo) => {
     setTodos([...todos, newTodo]);
   };
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const deleteTodo = (todo) => {
     setTodos(todos.filter((value) => value.id !== todo.id));
@@ -25,9 +32,11 @@ function App() {
   };
 
   const updateTodo = (newContent) => {
-    todos.filter((value) => {
-      return value.id == updateId ? (value.content = newContent) : updateContent;
-    });
+    setTodos(
+      todos.filter((value) => {
+        return value.id == updateId ? (value.content = newContent) : updateContent;
+      })
+    );
   };
 
   return (
