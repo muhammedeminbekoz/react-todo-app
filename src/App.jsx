@@ -58,6 +58,7 @@ function App() {
         <div className="mt-16">
           <Todolist
             todos={todos}
+            setTodos={setTodos}
             onDeleteTodo={deleteTodo}
             onUpdateTodo={updateTodo}
             onEditable={onEditable}
